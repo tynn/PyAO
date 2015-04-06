@@ -1,0 +1,60 @@
+2003-07-23  Andrew H. Chatham <pyogg@andrewchatham.com>
+	* aomodule.c: (parse_args) and (py_ao_new) Apply patch from Joerg
+	Lehmann to fix some segfaults.
+	
+2002-12-15  Andrew H. Chatham <pyogg@andrewchatham.com>
+	* aomodule.c: ao_driver_id no longer accepts NULL as a default
+	* aomodule.c: fixed some compiler warnings with gcc 3.2 
+	
+2002-9-24   Andrew H. Chatham <pyogg@andrewchatham.com>
+	* setup.py: fixed regular expression
+	
+2001-12-09  Andrew H. Chatham <andrew.chatham@duke.edu>
+	* README: Updated to document the "filename" keyword
+	
+	* config_unix.py: Updated to do logging.
+	
+2001-11-25  Andrew H. Chatham <andrew.chatham@duke.edu>
+	* README: Updated to match the new API. I forgot.
+
+	* src/aomodule.c: Changed get_driver_info as a method to driver_info
+
+2001-09-02  Andrew H. Chatham <andrew.chatham@duke.edu>
+	* setup.py: Bumped version number to 0.8 to match libao
+
+	* config_unix.py (find_ao): pass the include dir to run_test
+	
+2001-08-30  Andrew H. Chatham <andrew.chatham@duke.edu>
+	* aomodule.[ch] Updated to work with the updated ao API.
+	  Not entirely sure the way of dealing with files is perfect,
+	  but it should be serviceable.
+
+	* aomodule.[ch] Changed some of the function names so that they
+	  look more like their C counterparts (getting rid of get_ 
+	  in function names, for example)
+	
+2001-02-18  Andrew H. Chatham <andrew.chatham@duke.edu>
+	* README: Fixed incorrect config instructions
+	
+2001-01-31  Andrew H. Chatham <andrew.chatham@duke.edu>
+	* setup.py, config_unix.py, setup.cfg: Went back to an older way
+	of configuring things, which seems to be the only maintainable way
+	to do it until distutils has better configuration
+	support. "./setup.py bdist_rpm" should work fine now.
+	
+2001-01-21  Andrew H. Chatham <andrew.chatham@duke.edu>
+	* src/aomodule.c (dict_to_options): Size checking removed; no
+	longer necessary
+	
+	* src/aomodule.h: Made comments closer to Python style guide
+        * src/aomodule.[ch]: Switched to C-style comments
+	
+	* src/aomodule.c (py_ao_new) (py_ao_get_driver_info): Support
+	string argument
+
+	* src/aomodule.c (initao): Removed extra calls to AddInt
+
+	* ChangeLog: Started
+	* build.py: removed
+	
+	* setup.py: Added configuration
