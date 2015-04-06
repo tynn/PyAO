@@ -1,0 +1,8 @@
+Setup
+MANIFEST
+build
+dist
+*.pyc
+*.so
+*.log
+*.wav
