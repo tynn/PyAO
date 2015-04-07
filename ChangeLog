@@ -1,6 +1,12 @@
+2004-1-13   Andrew H. Chatham <pyogg@andrewchatham.com>
+	* aomodule.c: Add a patch from Roel Schroeven to add
+	ao.default_driver_id()
+	
 2003-07-23  Andrew H. Chatham <pyogg@andrewchatham.com>
 	* aomodule.c: (parse_args) and (py_ao_new) Apply patch from Joerg
 	Lehmann to fix some segfaults.
+	* aomodule.h: Apply patch from Klaus Harke to so things will
+	compile on Suse properly.
 	
 2002-12-15  Andrew H. Chatham <pyogg@andrewchatham.com>
 	* aomodule.c: ao_driver_id no longer accepts NULL as a default

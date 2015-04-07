@@ -9,6 +9,7 @@
 typedef struct {
   PyObject_HEAD
   ao_device *dev;
+  int driver_id;
 } ao_Object;
 
 static PyObject *Py_aoError;
@@ -57,6 +58,22 @@ If filename is passed, the module will try to open an output file as the\n\
 audio device. In this case, overwrite indicates whether to overwrite an\n\
 existing file\n";
 
+static PyObject *py_ao_default_driver_id(PyObject *self, PyObject *args);
+static char py_ao_default_driver_id_doc[] ="Returns the ID number of the default live output driver.\n\
+\n\
+If the configuration files specify a default driver, its ID is returned,\n\
+otherwise the library tries to pick a live output driver that will work\n\
+on the host platform.\n\
+\n\
+Return values:\n\
+    . a non-negative value is the ID number of the default driver\n\
+    . -1 indicates failure to find a usable audio output device\n\
+\n\
+Notes:\n\
+    If no default device is available, you may still use the \n\
+    null device to test your application.";
+
+
 static PyTypeObject ao_Type = {
   PyObject_HEAD_INIT(&PyType_Type)
   0,
@@ -103,6 +120,8 @@ struct PyMethodDef ao_methods[] = {
    METH_VARARGS, py_ao_driver_info_doc},
   {"is_big_endian", py_ao_is_big_endian, 
    METH_VARARGS, py_ao_is_big_endian_doc},
+  {"default_driver_id", py_ao_default_driver_id,
+   METH_NOARGS, py_ao_default_driver_id_doc},
   {NULL, NULL}
 };
 
