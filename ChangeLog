@@ -1,4 +1,19 @@
-2004-1-13   Andrew H. Chatham <pyogg@andrewchatham.com>
+2015-02-12  Christian Schmitz <tynn.dev@gmail.com>
+	* setup.py: Bumped version number to 1.2 to match libao
+	* setup.py, aomodule.[ch]: Compatibility with Python 3
+	* aomodule.c: Made use of converter for uint_64 in PyArg_ParseTuple*
+	* aomodule.c: Set default_driver_id when driver_id is not given explicitly
+	* aomodule.c: Added option matrix for ao_sample_format.matrix in parse_args
+	* aomodule.[ch]: ao.AudioDevice is a type now
+	* aomodule.h: Added driver_id member to ao.AudioDevice
+	* aomodule.c: Assured num_bytes < #output_samples in ao.AudioDevice.play
+	* aomodule.c: Let is_big_endian return bool
+	* aomodule.c: Let driver_info return list of drivers for None argument
+	* aomodule.[ch]: Added missing file_extension function and method
+	* aomodule.c: Added constants AO_FMT_LITTLE, AO_FMT_BIG and AO_FMT_NATIVE
+	* aomodule.c: Added macro AO_FE_MISSING for libao 1.1.0 compatibility
+
+2004-01-13  Andrew H. Chatham <pyogg@andrewchatham.com>
 	* aomodule.c: Add a patch from Roel Schroeven to add
 	ao.default_driver_id()
 	
