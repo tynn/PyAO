@@ -1,3 +1,6 @@
+2015-05-24  Christian Schmitz <tynn.dev@gmail.com>
+	* setup.py: Use setuptools if available
+
 2015-02-12  Christian Schmitz <tynn.dev@gmail.com>
 	* setup.py: Bumped version number to 1.2 to match libao
 	* setup.py, aomodule.[ch]: Compatibility with Python 3

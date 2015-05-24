@@ -11,13 +11,13 @@ Python versions.
 ### Build
 Build the extension modules with:
 
-	python setup build_ext
+	python setup.py build_ext
 
 #### Using version 1.1.0 of libao
 In version 1.1.0 of libao the implementation of `ao_file_extension()` is
 missing. To bypass calling this function, build with:
 
-	python setup build_ext -DAO_FE_MISSING
+	python setup.py build_ext -DAO_FE_MISSING
 
 ### A note
 Because of the way the AO API works, if you are opening a device that outputs
