@@ -381,7 +381,7 @@ py_ao_play(ao_Object *self, PyObject *args)
     return PyErr_NoMemory();
 
   Py_BEGIN_ALLOW_THREADS
-  Py_MEMCPY(output_samples, samples, sizeof(char) * num_bytes);
+  memcpy(output_samples, samples, sizeof(char) * num_bytes);
   ao_play(self->dev, output_samples, num_bytes);
   Py_END_ALLOW_THREADS
 
