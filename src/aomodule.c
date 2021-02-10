@@ -26,7 +26,7 @@ uint_32_obj (PyObject *obj, void *addr) {
 
   value = PyLong_AsUnsignedLong(obj);
 
-  if (value != -1 || !PyErr_Occurred()) {
+  if (value != (unsigned long)-1 || !PyErr_Occurred()) {
     if (value <= 0xffffffff) {
       *value_32 = (uint_32) value;
       return 1;
