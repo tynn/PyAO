@@ -65,7 +65,7 @@ It can either be called as a member function of an AudioDevice object:\n\
 or as a standalone function which takes the integer id or the string name of the\n\
 driver:\n\
    ao.driver_info(1) or ao.driver_info(\"pulse\")\n\
-If None is passed or the argument omited a list of informations for all drivers\n\
+If None is passed (or the argument omited) information for all drivers\n\
 is returned:\n\
    ao.driver_info() or ao.driver_info(None)";
 static PyObject *py_ao_driver_info(PyObject *, PyObject *);
