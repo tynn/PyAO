@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <stdbool.h>
 #include "aomodule.h"
 #include <assert.h>
 
@@ -223,36 +224,48 @@ py_ao_driver_id(PyObject *self, PyObject *args)
 }
 
 static PyObject *
-info_to_obj(ao_info *info) {
-  static char *keys[] = {"name", "short_name", "author", "comment"};
-  PyObject *retdict;
-  PyObject *string;
-  char *strings[4];
-  int i;
-
-  if (!info) {
-    PyErr_SetString(Py_aoError, "Error getting info");
-    return NULL;
-  }
-
-  retdict = PyDict_New();
-  if (retdict) {
-    strings[0] = info->name;
-    strings[1] = info->short_name;
-    strings[2] = info->author;
-    strings[3] = info->comment;
-
-    for (i = 0; i < 4; i++) {
-      string = PyString_FromString(strings[i]);
-      if (!string || PyDict_SetItemString(retdict, keys[i], string) < 0) {
-        Py_CLEAR(retdict);
-        break;
+info_to_obj(ao_info *info)
+  {
+    static const char * const keys[] = {"name", "short_name", "author", "comment"};
+    PyObject * result = NULL;
+    PyObject * retdict = NULL;
+    do /*once*/
+      {
+        if (info == NULL)
+          {
+            PyErr_SetString(Py_aoError, "Error getting info");
+            break;
+          } /*if*/
+        retdict = PyDict_New();
+        if (PyErr_Occurred())
+            break;
+          {
+            const char * const strings[4] =
+                {info->name, info->short_name, info->author, info->comment};
+            for (int i = 0;;)
+              {
+                if (i == 4)
+                    break; /* all done */
+                PyObject * const string = PyString_FromString(strings[i]);
+                if (PyErr_Occurred())
+                    break;
+                const bool success = PyDict_SetItemString(retdict, keys[i], string) == 0;
+                Py_DECREF(string);
+                if (!success)
+                    break;
+                ++i;
+              } /*for*/
+            if (PyErr_Occurred())
+                break;
+          }
+      /* all successfully done */
+        result = retdict;
+        retdict = NULL; /* so I don’t dispose of it yet */
       }
-    }
-  }
-
-  return retdict;
-}
+    while (false);
+    Py_XDECREF(retdict);
+    return result;
+  } /*info_to_obj*/
 
 static PyObject *
 py_ao_driver_info(PyObject *self, PyObject *args)
