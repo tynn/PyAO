@@ -19,6 +19,8 @@
 #ifndef __AO_MODULE_H__
 #define __AO_MODULE_H__
 
+#define PY_SSIZE_T_CLEAN
+
 #include <Python.h>
 #include <structmember.h>
 #include <ao/ao.h>
