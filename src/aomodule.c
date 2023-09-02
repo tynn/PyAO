@@ -364,11 +364,12 @@ py_ao_play(ao_Object *self, PyObject *args)
   const char *samples;
   char *output_samples;
   uint_32 num_bytes = 0;
-  int len;
 
 #if PY_MAJOR_VERSION >= 3
+  Py_ssize_t len;
   if (!(PyArg_ParseTuple(args, "y#|O&", &samples, &len, uint_32_obj, &num_bytes)))
 #else
+  int len;
   if (!(PyArg_ParseTuple(args, "s#|O&", &samples, &len, uint_32_obj, &num_bytes)))
 #endif
     return NULL;
